@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head><meta charset="UTF-8"><title>プライバシーポリシー - サイドバーブックマーク</title></head>
+<body>
+<h1>プライバシーポリシー</h1>
+<p>最終更新日：2026年3月2日</p>
+
+<h2>収集するデータ</h2>
+<p>本拡張機能「サイドバーブックマーク」は、ユーザーの個人データを収集・外部送信しません。</p>
+<p>ユーザーが登録したブックマークデータはすべてお使いのデバイスのchrome.storage.localにのみ保存され、外部サーバーには一切送信されません。</p>
+
+<h2>外部サービスの利用</h2>
+<p>ブックマークのファビコン表示のためにGoogle Favicon Service（https://www.google.com/s2/favicons）を使用しています。この際、ブックマークに登録されたURLのドメイン名のみがGoogleに送信されます。</p>
+
+<h2>お問い合わせ</h2>
+<p>ご質問はChrome Web Storeのサポートページよりお問い合わせください。</p>
+</body>
+</html>
