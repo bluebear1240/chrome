@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Budscene - 防音室・防音工事</title>
+  <style>
+    :root {
+      --bg: #0b1b2d;
+      --text: #fff;
+      --muted: rgba(255,255,255,0.75);
+      --accent: #f2c94c;
+      --card: rgba(255,255,255,0.06);
+      --shadow: 0 24px 40px rgba(0,0,0,0.35);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background: #050a12;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 50;
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(5, 10, 18, 0.72);
+      backdrop-filter: blur(12px);
+    }
+
+    .site-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: 1px;
+    }
+
+    .site-logo span {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    nav {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      font-size: 0.95rem;
+    }
+
+    nav a {
+      padding: 6px 0;
+      position: relative;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -4px;
+      height: 2px;
+      background: var(--accent);
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+
+    nav a:hover::after {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .header-phone {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .header-phone svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--accent);
+    }
+
+    .btn-contact {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: background 200ms ease, transform 200ms ease;
+    }
+
+    .btn-contact:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      min-height: 96vh;
+      padding-top: 120px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: url("https://budscene.co.jp/wp-content/themes/budscene/assets/images/kv/kv01.jpg") center/cover no-repeat;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(3, 9, 18, 0.6) 0%, rgba(3, 9, 18, 0.9) 100%);
+    }
+
+    .hero-inner {
+      position: relative;
+      max-width: 1040px;
+      width: 100%;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .hero-copy {
+      text-align: left;
+    }
+
+    .hero-copy h1 {
+      font-size: clamp(2rem, 4vw, 3.8rem);
+      margin: 0;
+      line-height: 1.1;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-copy p {
+      margin: 18px 0 24px;
+      font-size: 1.1rem;
+      max-width: 480px;
+      color: var(--muted);
+    }
+
+    .hero-copy .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 24px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #0b1b2d;
+      font-weight: 700;
+      box-shadow: 0 16px 24px rgba(0,0,0,0.35);
+      transition: transform 180ms ease;
+    }
+
+    .hero-copy .hero-cta:hover {
+      transform: translateY(-2px);
+    }
+
+    .hero-cards {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: 1fr;
+    }
+
+    .card {
+      position: relative;
+      padding: 18px;
+      border-radius: 18px;
+      overflow: hidden;
+      min-height: 150px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.16);
+      display: flex;
+      align-items: flex-end;
+      box-shadow: var(--shadow);
+      transition: transform 220ms ease, background 220ms ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      background: rgba(255,255,255,0.12);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.2), rgba(0,0,0,0.6));
+      mix-blend-mode: multiply;
+    }
+
+    .card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(1.15) contrast(1.02);
+    }
+
+    .card-body {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: #fff;
+    }
+
+    .card-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.18);
+      display: grid;
+      place-items: center;
+      font-size: 1.45rem;
+    }
+
+    .card-title {
+      font-weight: 700;
+      font-size: 1rem;
+      line-height: 1.2;
+    }
+
+    @media (max-width: 960px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy {
+        text-align: center;
+      }
+
+      .hero-copy p {
+        margin: 16px auto 24px;
+      }
+
+      nav {
+        display: none;
+      }
+    }
+
+    @media (max-width: 520px) {
+      header {
+        padding: 12px 16px;
+      }
+
+      .hero {
+        padding-top: 100px;
+      }
+
+      .hero-copy h1 {
+        font-size: 2.6rem;
+      }
+
+      .hero-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    footer {
+      padding: 52px 24px;
+      text-align: center;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.95rem;
+      background: #060b14;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="site-logo" href="#">
+      <strong>Budscene</strong>
+      <span>バドシーン</span>
+    </a>
+
+    <nav>
+      <a href="#about">About</a>
+      <a href="#works">Works</a>
+      <a href="#column">Column</a>
+      <a href="#flow">Flow</a>
+      <a href="#cost">Cost</a>
+      <a href="#faq">Q&amp;A</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="header-phone" href="tel:0344007678">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21 11.72 11.72 0 003.7.59 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.72 11.72 0 00.59 3.7 1 1 0 01-.21 1.11l-2.26 2.26z" />
+        </svg>
+        03-4400-7678
+      </a>
+      <a class="btn-contact" href="#contact">お問い合わせ</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-label="トップビジュアル">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <h1>静寂という豊かさを<br />防音室で</h1>
+          <p>遮音性能保証、性能クレームゼロ 支持されて15年</p>
+          <a class="hero-cta" href="#contact">お問い合わせ</a>
+        </div>
+
+        <div class="hero-cards">
+          <a class="card" href="#">
+            <img src="https://budscene.co.jp/wp-content/themes/budscene/assets/images/kv/kv02.jpg" alt="家で楽器を弾きたい方へ">
+            <div class="card-body">
+              <span class="card-icon" aria-hidden="true">🎸</span>
+              <span class="card-title">家で楽器を弾きたい方へ</span>
+            </div>
+          </a>
+          <a class="card" href="#">
+            <img src="https://budscene.co.jp/wp-content/themes/budscene/assets/images/kv/kv03.jpg" alt="マンションでの防音室">
+            <div class="card-body">
+              <span class="card-icon" aria-hidden="true">🏢</span>
+              <span class="card-title">マンションでの防音室</span>
+            </div>
+          </a>
+          <a class="card" href="#">
+            <img src="https://budscene.co.jp/wp-content/themes/budscene/assets/images/kv/kv04.jpg" alt="企業様向けの防音室">
+            <div class="card-body">
+              <span class="card-icon" aria-hidden="true">🎛️</span>
+              <span class="card-title">企業様向けの防音室</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" style="padding: 80px 24px;">
+      <div style="max-width: 1040px; margin: 0 auto;">
+        <h2 style="font-size: 2.2rem; margin-bottom: 16px;">バドシーンとは</h2>
+        <p style="color: rgba(255,255,255,0.75); font-size: 1.05rem; max-width: 720px;">Budscene（バドシーン）は、防音室の設計・施工を専門とする企業です。音楽スタジオから住宅防音、企業向け防音まで、豊富な施工実績と長年の経験をもとに、遮音性能保証を備えた高品質な防音空間を提供します。</p>
+      </div>
+    </section>
+
+    <section id="works" style="padding: 80px 24px; background: rgba(255,255,255,0.04);">
+      <div style="max-width: 1040px; margin: 0 auto;">
+        <h2 style="font-size: 2.2rem; margin-bottom: 16px;">施工事例</h2>
+        <p style="color: rgba(255,255,255,0.75); max-width: 720px; margin-bottom: 40px;">実際に施工した防音室の一例をご紹介します。音質・静音性を高めるためにこだわった設計を、ぜひご覧ください。</p>
+        <div style="display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+          <div style="border-radius: 18px; overflow: hidden; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14);">
+            <img src="https://budscene.co.jp/wp-content/uploads/2022/01/work01.jpg" alt="施工事例1" style="width: 100%; height: 190px; object-fit: cover;">
+            <div style="padding: 18px;">
+              <h3 style="margin: 0 0 10px; font-size: 1.1rem;">リビング防音室</h3>
+              <p style="margin: 0; color: rgba(255,255,255,0.72);">家族との共生を叶える、自然な空間イメージの防音室。</p>
+            </div>
+          </div>
+          <div style="border-radius: 18px; overflow: hidden; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14);">
+            <img src="https://budscene.co.jp/wp-content/uploads/2022/01/work02.jpg" alt="施工事例2" style="width: 100%; height: 190px; object-fit: cover;">
+            <div style="padding: 18px;">
+              <h3 style="margin: 0 0 10px; font-size: 1.1rem;">マンション専用防音室</h3>
+              <p style="margin: 0; color: rgba(255,255,255,0.72);">遮音性能とデザイン性を両立したコンパクト設計。</p>
+            </div>
+          </div>
+          <div style="border-radius: 18px; overflow: hidden; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14);">
+            <img src="https://budscene.co.jp/wp-content/uploads/2022/01/work03.jpg" alt="施工事例3" style="width: 100%; height: 190px; object-fit: cover;">
+            <div style="padding: 18px;">
+              <h3 style="margin: 0 0 10px; font-size: 1.1rem;">商業施設向け防音室</h3>
+              <p style="margin: 0; color: rgba(255,255,255,0.72);">店舗・スタジオに最適化した機能的な防音室。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" style="padding: 80px 24px;">
+      <div style="max-width: 1040px; margin: 0 auto;">
+        <h2 style="font-size: 2.2rem; margin-bottom: 16px;">お問い合わせ</h2>
+        <p style="color: rgba(255,255,255,0.75); max-width: 720px; margin-bottom: 36px;">防音室の相談・見積もりはお気軽にお問い合わせください。経験豊富なスタッフがご要望に合わせてご提案します。</p>
+        <div style="display: grid; gap: 22px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+          <div style="padding: 22px; border-radius: 18px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14);">
+            <h3 style="margin: 0 0 10px; font-size: 1.1rem;">電話で相談</h3>
+            <p style="margin: 0 0 14px; color: rgba(255,255,255,0.75);">平日 9:00〜18:00</p>
+            <a href="tel:0344007678" style="display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: 999px; background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.24);">03-4400-7678</a>
+          </div>
+          <div style="padding: 22px; border-radius: 18px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14);">
+            <h3 style="margin: 0 0 10px; font-size: 1.1rem;">メールで相談</h3>
+            <p style="margin: 0 0 14px; color: rgba(255,255,255,0.75);">24時間受付中</p>
+            <a href="#" style="display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: 999px; background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.24);">お問い合わせフォーム</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div style="max-width: 1040px; margin: 0 auto;">
+      <p>© Budscene. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
