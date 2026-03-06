@@ -126,7 +126,7 @@
     }
 
     .hero {
-      min-height: 96vh;
+      min-height: 100vh;
       padding-top: 120px;
       position: relative;
       display: flex;
@@ -149,7 +149,7 @@
       width: 100%;
       padding: 0 24px;
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
+      grid-template-columns: 1.3fr 0.9fr;
       gap: 24px;
       align-items: center;
     }
@@ -163,6 +163,20 @@
       margin: 0;
       line-height: 1.1;
       letter-spacing: 0.02em;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    .hero-copy h1::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 70px;
+      height: 3px;
+      border-radius: 99px;
+      background: var(--accent);
+      opacity: 0.9;
     }
 
     .hero-copy p {
@@ -193,6 +207,10 @@
       display: grid;
       gap: 18px;
       grid-template-columns: 1fr;
+      padding: 18px;
+      border: 1px solid rgba(242, 201, 76, 0.55);
+      border-radius: 18px;
+      background: rgba(0, 0, 0, 0.25);
     }
 
     .card {
@@ -202,16 +220,17 @@
       overflow: hidden;
       min-height: 150px;
       background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.16);
+      border: 1px solid rgba(242, 201, 76, 0.45);
       display: flex;
       align-items: flex-end;
       box-shadow: var(--shadow);
-      transition: transform 220ms ease, background 220ms ease;
+      transition: transform 220ms ease, background 220ms ease, border 220ms ease;
     }
 
     .card:hover {
       transform: translateY(-4px);
       background: rgba(255,255,255,0.12);
+      border-color: rgba(242, 201, 76, 0.7);
     }
 
     .card::before {
@@ -245,6 +264,7 @@
       height: 46px;
       border-radius: 50%;
       background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(242, 201, 76, 0.75);
       display: grid;
       place-items: center;
       font-size: 1.45rem;
@@ -334,7 +354,12 @@
         <div class="hero-copy">
           <h1>静寂という豊かさを<br />防音室で</h1>
           <p>遮音性能保証、性能クレームゼロ 支持されて15年</p>
-          <a class="hero-cta" href="#contact">お問い合わせ</a>
+          <a class="hero-cta" href="#contact">
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 5.5C2 4.12 3.12 3 4.5 3h15c1.38 0 2.5 1.12 2.5 2.5v13c0 1.38-1.12 2.5-2.5 2.5h-15C3.12 21 2 19.88 2 18.5v-13zM4.5 5c-.28 0-.5.22-.5.5v.07l8 5.33 8-5.33V5.5c0-.28-.22-.5-.5-.5h-15zm15 14.5c.28 0 .5-.22.5-.5v-10.07l-7.5 5-7.5-5V19c0 .28.22.5.5.5h15z"/>
+            </svg>
+            お問い合わせ
+          </a>
         </div>
 
         <div class="hero-cards">
